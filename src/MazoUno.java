@@ -68,7 +68,6 @@ public class MazoUno {
 
     public void mostrarMazo(){
         int i = 1;
-        boolean flag = true;
 
         for(CartaUno c : cartas){
             System.out.println(i + " " + c.toString());
