@@ -71,7 +71,7 @@ public class MazoUno{
         return cartaDada;
     }
 
-    //** USAMOS LAS CARTAS DE LA PILA PARA QUE AHORA SEA EL MAZO **
+    //** LE DAMOS LAS CARTAS DE LA PILA AL MAZO **
     public void pilaAMazo(ArrayList<CartaUno> pila, ArrayList<CartaUno> mazo){
         for(int i = 0; i < pila.size(); i++){
             cartas.add(i, pila.get(i));

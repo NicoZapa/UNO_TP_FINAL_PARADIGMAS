@@ -29,6 +29,8 @@ public class MesaJuego extends ReglasUno{
             for(int j = 0; j < CARTASxJUGADOR; j++){ //CANTIDAD DE CARTAS x JUGADOR
                jugadores.get(i).setCartasMano(mazo.darCarta());
             }
+            System.out.println("MANO JUGADOR " + (i+1) + ": ");
+            jugadores.get(i).mostrarMano();
         }
 
         System.out.println("\n** CARTAS YA REPARTIDA **");

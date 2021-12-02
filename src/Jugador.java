@@ -15,4 +15,12 @@ public class Jugador{
         this.cartasMano.add(carta);
     }
 
+    //** MOSTRAMOS LA MANO DEL JUGADOR **
+    public void mostrarMano(){
+        for(CartaUno c : cartasMano){
+            System.out.println(this.cartasMano);
+        }
+    }
+
+
 }
