@@ -4,18 +4,16 @@
 * 13 14 => CARTAS NEGRAS
 * */
 
-//1) METODO DAR CARTA
-//2) SI NO HAY CARTAS => MEZCLAMOS LA PILA DE DESCARTE (PARA GENERAR EL MAZO) Y DAMOS CARTA
-//3) CREAR UNA LISTA QUE TOME CARTAS Y QUE SEA LA PILA DE DESCARTE
-//4) LA CARTA QUE SE JUEGA DEBE ESTAR EN UNA VARIABLE TIPO CARTAUNO
+// DEBEMOS LLENAR LA PILA DE DESCARTE PARA LUEGO PODER REUTILIZARLO COMO MAZO
 
 import java.util.*;
 
-public class MazoUno {
+public class MazoUno{
 
-    private List<CartaUno> cartas;
-    private List<CartaUno> pilaDescarte = new ArrayList<>();
+    ArrayList<CartaUno> cartas;
+    private ArrayList<CartaUno> pilaDescarte = new ArrayList<>();
     private int posSiguienteCarta = 0;
+    private CartaUno cartaDada;
 
     public MazoUno(){
         cartas = new ArrayList<>();
@@ -28,12 +26,12 @@ public class MazoUno {
         String[] colores = CartaUno.COLORES;
 
         //LLENAR LOS 5 COLORES
-        for(int i = 0; i < colores.length-1; i++) { //LOS COLORES
+        for(int i = 0; i < colores.length-1; i++) { //CREAMOS CARTAS COLOR MENOS EL NEGRO
             for(int j = 0; j < 2; j++){ //CARTAS REPETIDAS x COLOR
                 for (int k = 0; k <= CartaUno.CARTASxCOLOR/2; k++) { //CARTAS x COLOR
                     if(k <= 12){
                         cartas.add(new CartaUno(colores[i], k));
-                    }else if(j == 1){
+                    }else if(j == 1){ //CREAMOS LAS CARTAS NEGRAS
                         cartas.add(new CartaUno(colores[4], k));
                     }
                 }
@@ -54,19 +52,31 @@ public class MazoUno {
         mostrarMazo();
     }
 
-    //** AGREGAMOS A LA PILA DE DESCARTE **
+    //** AGREGAMOS CARTAS A LA PILA DE DESCARTE **
     private void setPilaDescarte(CartaUno carta){
         pilaDescarte.add(carta);
     }
 
     //** DAR CARTA AL JUGADOR **
     public CartaUno darCarta(){
+
         if(cartas.isEmpty()){
             System.out.println("EL MAZO ESTA VACIO. VAMOS A MEZCLAR LAS CARTAS YA JUGADAS");
             mezclar(pilaDescarte);
-            posSiguienteCarta = 0;
+            pilaAMazo(pilaDescarte, cartas);
         }
-        return cartas.get(posSiguienteCarta++);
+
+        cartaDada = cartas.get(posSiguienteCarta);
+        cartas.remove(posSiguienteCarta);
+        return cartaDada;
+    }
+
+    //** USAMOS LAS CARTAS DE LA PILA PARA QUE AHORA SEA EL MAZO **
+    public void pilaAMazo(ArrayList<CartaUno> pila, ArrayList<CartaUno> mazo){
+        for(int i = 0; i < pila.size(); i++){
+            cartas.add(i, pila.get(i));
+            pila.remove(pila.get(i));
+        }
     }
 
     //** MOSTRAR EL MAZO **

@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class MesaJuego {
+public class MesaJuego extends ReglasUno{
 
     MazoUno mazo;
     List<Jugador> jugadores = new ArrayList<>();
@@ -8,6 +8,7 @@ public class MesaJuego {
     private final int CARTASxJUGADOR = 7;
 
     public MesaJuego(){
+
         //MAZO
         mazo = new MazoUno();
 
@@ -19,6 +20,8 @@ public class MesaJuego {
 
         //REPARTIMOS LAS CARTAS A CADA JUGADOR
         repartir();
+        cartaActiva = mazo.darCarta();
+        System.out.println("CARTA ACTIVA: " + getCartaActiva().toString());
     }
 
     private void repartir(){
@@ -27,9 +30,16 @@ public class MesaJuego {
                jugadores.get(i).setCartasMano(mazo.darCarta());
             }
         }
+
+        System.out.println("\n** CARTAS YA REPARTIDA **");
+        mazo.mostrarMazo();
     }
 
-    private void setCartaActiva(){
+    private void setCartaActiva(CartaUno carta){
 
+    }
+
+    public CartaUno getCartaActiva() {
+        return cartaActiva;
     }
 }

@@ -1,4 +1,4 @@
-public class CartaUno {
+public class CartaUno{
     private String color;
     private int numero;
 
