@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Jugador{
+public class Jugador extends ReglasUno{
     private String nombre;
     private List<CartaUno> cartasMano;
 
@@ -17,10 +17,19 @@ public class Jugador{
 
     //** MOSTRAMOS LA MANO DEL JUGADOR **
     public void mostrarMano(){
-        for(CartaUno c : cartasMano){
-            System.out.println(this.cartasMano);
-        }
+
+        System.out.println("\n*** MANO " + this.nombre + " ***");
+        System.out.println(cartasMano.toString());
+
     }
 
+    /*** CANTIDAD DE CARTAS ***/
+    /*public int cantCartas(){
+        this.cartasMano.size();
+    }*/
 
+    //** JUEGA CARTA **
+    public CartaUno jugarCarta(CartaUno carta){
+        return carta;
+    }
 }

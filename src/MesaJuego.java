@@ -4,8 +4,11 @@ public class MesaJuego extends ReglasUno{
 
     MazoUno mazo;
     List<Jugador> jugadores = new ArrayList<>();
-    CartaUno cartaActiva;
+    private CartaUno cartaActiva;
     private final int CARTASxJUGADOR = 7;
+    boolean juegoFuncionando = true;
+    Scanner in = new Scanner(System.in);
+    int elijoCarta;
 
     public MesaJuego(){
 
@@ -15,13 +18,14 @@ public class MesaJuego extends ReglasUno{
         //JUGADORES
         jugadores.add(new Jugador("Jugador 1"));
         jugadores.add(new Jugador("Jugador 2"));
-        jugadores.add(new Jugador("Jugador 3"));
-        jugadores.add(new Jugador("Jugador 4"));
+        //jugadores.add(new Jugador("Jugador 3"));
+        //jugadores.add(new Jugador("Jugador 4"));
 
         //REPARTIMOS LAS CARTAS A CADA JUGADOR
         repartir();
         cartaActiva = mazo.darCarta();
-        System.out.println("CARTA ACTIVA: " + getCartaActiva().toString());
+        //MostrarCartaActiva();
+        playGame();
     }
 
     private void repartir(){
@@ -29,19 +33,48 @@ public class MesaJuego extends ReglasUno{
             for(int j = 0; j < CARTASxJUGADOR; j++){ //CANTIDAD DE CARTAS x JUGADOR
                jugadores.get(i).setCartasMano(mazo.darCarta());
             }
-            System.out.println("MANO JUGADOR " + (i+1) + ": ");
-            jugadores.get(i).mostrarMano();
+            //jugadores.get(i).mostrarMano();
         }
-
-        System.out.println("\n** CARTAS YA REPARTIDA **");
-        mazo.mostrarMazo();
+        //mazo.mostrarMazo();
     }
 
-    private void setCartaActiva(CartaUno carta){
-
+    public void setCartaActiva(CartaUno carta){
+        mazo.setPilaDescarte(carta);
     }
 
-    public CartaUno getCartaActiva() {
-        return cartaActiva;
+    public void MostrarCartaActiva() {
+        System.out.println("\nCARTA ACTIVA \n" + cartaActiva);
+    }
+
+    //****************
+    public void playGame(){
+
+        while(juegoFuncionando){
+
+            int turno = 0;
+
+            while(turno == 0){
+                System.out.println("-----------------------------------");
+                System.out.println("¿QUE CARTA VA A JUGAR?");
+                jugadores.get(turno).mostrarMano();
+                MostrarCartaActiva();
+                System.out.println("-----------------------------------");
+                System.out.print("\nELECCION: ");
+                elijoCarta = in.nextInt();
+
+                turno++;
+            }
+
+            while(turno == 1){
+                System.out.println("-----------------------------------");
+                System.out.println("----¿QUE CARTA VA A JUGAR?----");
+                jugadores.get(turno).mostrarMano();
+                MostrarCartaActiva();
+                System.out.println("-----------------------------------");
+                System.out.print("\nELECCION: ");
+                elijoCarta = in.nextInt();
+                turno++;
+            }
+        }
     }
 }

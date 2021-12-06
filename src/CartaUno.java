@@ -29,9 +29,7 @@ public class CartaUno{
 
     @Override
     public String toString() {
-        return "CartaUno{" +
-                "color='" + color + '\'' +
-                ", numero=" + numero +
-                '}';
+        String texto = this.numero + " " + this.color;
+        return texto;
     }
 }
